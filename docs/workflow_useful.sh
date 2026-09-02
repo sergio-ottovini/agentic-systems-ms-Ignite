@@ -1,3 +1,16 @@
+
+git clone --depth 1 https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples/samples/python/enterprise-agent-tutorial/1-idea-to-prototype
+
+
+git clone --no-checkout https://github.com/microsoft-foundry/foundry-samples.git
+cd foundry-samples
+git sparse-checkout init --cone
+git sparse-checkout set samples/python/enterprise-agent-tutorial/1-idea-to-prototype
+git checkout
+cd samples/python/enterprise-agent-tutorial/1-idea-to-prototype
+
+
 azd ai eval init          # scaffold the configuration. Makes no service calls
 azd ai eval generate      # optional: synthesize a dataset and a rubric evaluator
 azd ai eval create        # register the eval in the Foundry project
