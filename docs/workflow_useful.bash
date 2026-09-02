@@ -19,3 +19,30 @@ azd ai eval generate \
   --target support-agent \
   --generation-model gpt-4.1-nano \
   --agent-instruction "Handles support requests. Test triage, policy adherence, and escalation."
+
+
+azd ai eval generate --target support-agent --generation-model gpt-4.1-nano --no-wait
+azd ai eval job list --dataset
+azd ai eval job show <job-id> --dataset
+
+# Scaffold a project from a template or your existing code
+azd ai agent init
+
+# Run locally and invoke
+azd ai agent run
+azd ai agent invoke --local "Hello, world!"
+
+# Provision infrastructure and deploy the agent
+azd up
+
+# Extend the project with shared resources at any time
+azd ai connection create my-search --kind cognitive-search --target https://... --auth-type api-key --key "..."
+azd ai routine create daily-digest --trigger recurring --cron "0 7 * * *" --agent-name my-agent
+
+# Evaluate quality
+azd ai agent eval generate
+azd ai agent eval run
+
+# Tear down all Azure resources
+azd down
+
