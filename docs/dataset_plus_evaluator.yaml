@@ -4,3 +4,35 @@ datasets:
 evals:
     - name: support-agent-eval
       dataset: support-agent-dataset   # point the eval at the generated dataset
+
+evals:
+    - name: support-trace-eval
+      description: Basic quality evaluation for support-agent
+      source:
+        type: traces
+        max_traces: 20
+        agent_name: support-agent
+      evaluation_level: turn
+      evaluators:
+        - evaluator: builtin.task_adherence
+          initialization_parameters:
+            model: gpt-4.1-nano
+
+datasets:
+    - name: support-golden
+      source: ../tests/support-golden.jsonl
+evals:
+    - name: support-agent-eval
+      description: Basic quality evaluation for support-agent
+      dataset: support-golden
+      evaluation_level: turn
+      evaluators:
+        - evaluator: builtin.intent_resolution
+          initialization_parameters:
+            model: gpt-4.1-nano
+        - evaluator: builtin.task_adherence
+          initialization_parameters:
+            model: gpt-4.1-nano
+      target:
+        type: agent
+        name: support-agent
