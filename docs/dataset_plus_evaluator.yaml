@@ -1,0 +1,6 @@
+datasets:
+    - name: support-agent-dataset
+      source: ./datasets/support-agent-dataset.jsonl
+evals:
+    - name: support-agent-eval
+      dataset: support-agent-dataset   # point the eval at the generated dataset
